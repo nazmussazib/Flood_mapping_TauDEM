@@ -9,7 +9,8 @@ import numpy.ma as ma
 
 ## inputs
 ## change the inputs
-input_dir_name=r'E:\USU_Research_work\NFIE_Flood_Mapping\Onion'
+input_dir_name=r'E:\USU_Research_work\NFIE_Flood_Mapping\Onion' ## directory where "Main_watershed" is located
+## please check whether all input files are located inside the "Main_Watershed" directory
 watershed_file='onionwatershed_diss.shp'
 streamnetfile='Onionnet.shp'
 
