@@ -8,6 +8,7 @@ import numpy as np
 import numpy.ma as ma
 
 ## inputs
+## TODO Set up to take input files from command line or single file so that they do not need to be edited twice
 ## change the inputs
 input_dir_name=r'D:\Dropbox\Projects\CUAHSI\Collaboration\NFIE\NationalInundation\Onion\TauDEM' ## directory where "Main_watershed" is located
 ## please check whether all input files are located inside the "Main_Watershed" directory
@@ -19,6 +20,7 @@ streamnetfile='Onionnet.shp'
 networkfile = input_dir_name+"\\"+streamnetfile
 output_dir2=input_dir_name+"\\Subwatershed_ALL"
 infile = input_dir_name+"\\"+watershed_file
+## TODO allow this to be a general input
 myheight = [0.25,0.5,0.75,1,1.25,1.5,1.75,2,2.25,2.5,2.75,3,3.5,4,4.5,5,5.5,6,7,8,9,10]
 inShapefile =infile
 inDriver = ogr.GetDriverByName("ESRI Shapefile")
@@ -66,7 +68,8 @@ for i in range(0, inLayer.GetFeatureCount()):
       count_cell=dts_less_height.sum() ## ## count number of cell has less than zero
      # count_cell=len(arraydts[dts_less_height]) ## provied only row number which is not true
       Area=count_cell*8.92*10.29 ## in m2
-      Area=round(Area,2)
+      # TODO Compute from latitude and longitude cell size and elipsoid formula.  Also make these variables.
+      Area=round(Area,2)  # Why round.  This loses precision.
       area_all.append(Area)
       cell_height=dts_value[dts_less_height]*(-1)
       volume_in=8.92*10.29*cell_height ## volume

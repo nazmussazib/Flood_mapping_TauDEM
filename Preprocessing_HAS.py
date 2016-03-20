@@ -29,6 +29,7 @@ def PreProcess_Height_Above_Stream(input_dir_name,watershed_shapefile,watershed_
 # loop through input feature
     for i in range(0, inLayer.GetFeatureCount()):
         ## create directory
+        ## TODO it may be better to label the subwatersheds with gridcode so that we do not need to do two lookups to find which folder to look in
       dest = output_dir2+"\\Subwatershed"+str(i)
       os.mkdir(dest)
 # Get the input Feature
