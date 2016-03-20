@@ -7,11 +7,11 @@ import subprocess
 
 
 def PreProcess_Height_Above_Stream(input_dir_name,watershed_shapefile,watershed_raster,droptostream_raster,dinfslope_raster):
-    input_dir1=input_dir_name+"\\Main_Watershed"
-    infile = input_dir1+"\\"+watershed_shapefile
+    input_dir1=input_dir_name  #+"\\Main_Watershed"
+    infile = input_dir_name+"\\"+watershed_shapefile
 
-    if not os.path.exists(input_dir1):
-       os.makedirs(input_dir1)
+    ##if not os.path.exists(input_dir1):
+    ##   os.makedirs(input_dir1)
 
     output_dir2=input_dir_name+"\\Subwatershed_ALL"
     if not os.path.exists(output_dir2):
@@ -79,6 +79,7 @@ def PreProcess_Height_Above_Stream(input_dir_name,watershed_shapefile,watershed_
       command_dd="gdalwarp -te " +str(extent[0]) + " " + str(extent[2]) + " " + str(extent[1]) + " " + str(extent[3])+ " -dstnodata -32768 -cutline " + outShapefile+ " -cl "+ "subwatershed_"+str(i) + " " + dtsdir + " " + dts_out_file
       command_slp="gdalwarp -te " + str(extent[0]) + " " + str(extent[2]) + " " + str(extent[1]) + " " + str(extent[3])+ " -dstnodata -32768 -cutline " +outShapefile + " -cl "+ "subwatershed_"+str(i) + " " +  dinfslpdir + " " + dinfslp_out_file
 
+      print(command_subw)
       subprocess.check_call(command_subw)
       subprocess.check_call(command_dd)
       subprocess.check_call(command_slp)

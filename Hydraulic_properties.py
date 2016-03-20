@@ -9,16 +9,16 @@ import numpy.ma as ma
 
 ## inputs
 ## change the inputs
-input_dir_name=r'E:\USU_Research_work\NFIE_Flood_Mapping\Onion' ## directory where "Main_watershed" is located
+input_dir_name=r'D:\Dropbox\Projects\CUAHSI\Collaboration\NFIE\NationalInundation\Onion\TauDEM' ## directory where "Main_watershed" is located
 ## please check whether all input files are located inside the "Main_Watershed" directory
-watershed_file='onionwatershed_diss.shp'
+watershed_file='onionwd.shp'
 streamnetfile='Onionnet.shp'
 
 
 
-networkfile = input_dir_name+"\\Main_Watershed\\"+streamnetfile
+networkfile = input_dir_name+"\\"+streamnetfile
 output_dir2=input_dir_name+"\\Subwatershed_ALL"
-infile = input_dir_name+"\\Main_Watershed\\"+watershed_file
+infile = input_dir_name+"\\"+watershed_file
 myheight = [0.25,0.5,0.75,1,1.25,1.5,1.75,2,2.25,2.5,2.75,3,3.5,4,4.5,5,5.5,6,7,8,9,10]
 inShapefile =infile
 inDriver = ogr.GetDriverByName("ESRI Shapefile")
