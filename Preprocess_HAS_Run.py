@@ -6,10 +6,12 @@ from Preprocessing_HAS import *
 
 ## change all inputs
 
-input_dir_name=r'E:\USU_Research_work\NFIE_Flood_Mapping\Onion' ##  where "Main_Watershed"  is located
+input_dir_name=r'D:\Dropbox\Projects\CUAHSI\Collaboration\NFIE\NationalInundation\Onion\TauDEM' ##  where "Main_Watershed"  is located
 ## please check whether all input files are located inside the "Main_Watershed" directory
-watershed_shapefile='onionwatershed_diss.shp' ##
+## TODO Set up so that these inputs are also used for Hydraulic properties
+watershed_shapefile='onionwd.shp' ##
 watershed_raster='Onionw.tif'
 droptostream_raster="Oniondd.tif"
 dinfslope_raster="Onionslp.tif"
 PreProcess_Height_Above_Stream(input_dir_name,watershed_shapefile,watershed_raster,droptostream_raster,dinfslope_raster)
+# TODO put the hydraulic properties calculation as a function here so one function does all
