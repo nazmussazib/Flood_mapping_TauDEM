@@ -4,16 +4,16 @@ __author__ = 'shams'
 import os
 from osgeo import gdal, ogr
 import subprocess
-
+import sys
 
 def PreProcess_Height_Above_Stream(input_dir_name,watershed_shapefile,watershed_raster,droptostream_raster,dinfslope_raster):
-    input_dir1=input_dir_name  #+"\\Main_Watershed"
-    infile = input_dir_name+"\\"+watershed_shapefile
+    input_dir1=input_dir_name
+    infile = input_dir_name+"/"+watershed_shapefile
 
     ##if not os.path.exists(input_dir1):
     ##   os.makedirs(input_dir1)
 
-    output_dir2=input_dir_name+"\\Subwatershed_ALL"
+    output_dir2=input_dir_name+"/Subwatershed_ALL"
     if not os.path.exists(output_dir2):
        os.makedirs(output_dir2)
 
@@ -30,14 +30,14 @@ def PreProcess_Height_Above_Stream(input_dir_name,watershed_shapefile,watershed_
     for i in range(0, inLayer.GetFeatureCount()):
         ## create directory
         ## TODO it may be better to label the subwatersheds with gridcode so that we do not need to do two lookups to find which folder to look in
-      dest = output_dir2+"\\Subwatershed"+str(i)
+      dest = output_dir2+"/Subwatershed"+str(i)
       os.mkdir(dest)
 # Get the input Feature
       inFeature = inLayer.GetFeature(i)
 # Create output Feature
       os.chdir(dest)
        # Create the output Layer
-      outShapefile =dest+"\\"+"subwatershed_"+str(i)+".shp"
+      outShapefile =dest+"/"+"subwatershed_"+str(i)+".shp"
       outDriver = ogr.GetDriverByName("ESRI Shapefile")
 
 # Remove output shapefile if it already exists
@@ -81,9 +81,9 @@ def PreProcess_Height_Above_Stream(input_dir_name,watershed_shapefile,watershed_
       command_slp="gdalwarp -te " + str(extent[0]) + " " + str(extent[2]) + " " + str(extent[1]) + " " + str(extent[3])+ " -dstnodata -32768 -cutline " +outShapefile + " -cl "+ "subwatershed_"+str(i) + " " +  dinfslpdir + " " + dinfslp_out_file
 
       print(command_subw)
-      subprocess.check_call(command_subw)
-      subprocess.check_call(command_dd)
-      subprocess.check_call(command_slp)
+      os.system(command_subw)
+      os.system(command_dd)
+      os.system(command_slp)
 
 
 # Close DataSources
@@ -92,7 +92,9 @@ def PreProcess_Height_Above_Stream(input_dir_name,watershed_shapefile,watershed_
 
 
 
-
+if __name__ == '__main__':
+        # Map command line arguments to function arguments.
+    PreProcess_Height_Above_Stream(*sys.argv[1:])
 
 
 
